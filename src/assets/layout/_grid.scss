@@ -1,0 +1,47 @@
+@import "./variables";
+
+$grid-gutter: 16px;
+$grid-columns: 12;
+$grid-max: 1004px;
+
+[class*="m-"],
+[class*="s-"] {
+    float: left;
+    padding: 0 $grid-gutter;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1072px;
+    width: 100%;
+}
+
+.row {
+    box-sizing: border-box;
+}
+
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+@for $i from 1 through $grid-columns {
+    .m-#{$i} {
+        width: 100% / $grid-columns * $i;
+    }
+}
+
+@for $i from 1 through $grid-columns {
+    .s-#{$i} {
+        @media #{$small-and-down} {
+            width: 100% / $grid-columns * $i;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+$primary: (
+    "base": #0db8e6,
+);
+
+$secondary: (
+    "100": #e5e5e5,
+    "900": #2c2c2c,
+);
+
+$grey: (
+    "50": #f5f5f5,
+    "100": #fbfbfb,
+    "600": #6e6e6e,
+    "700": #4a5568,
+);
+
+$neutral: (
+    "white": #ffff,
+    "black": #000000,
+);
+
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "neutral": $neutral,
+    "grey": $grey,
+) !default;
+
+@function color($color, $type) {
+    @if map-has-key($colors, $color) {
+        $curr_color: map-get($colors, $color);
+        @if map-has-key($curr_color, $type) {
+            @return map-get($curr_color, $type);
+        }
+    }
+    @warn "Color `#{$color}` - `#{$type}` not found in $colors.";
+    @return null;
+}

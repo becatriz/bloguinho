@@ -1,0 +1,50 @@
+html {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: #ffff;
+    transition: background 0.5s ease-out;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}

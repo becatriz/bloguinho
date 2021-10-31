@@ -1,0 +1,96 @@
+$base-size: 16;
+
+@function size($target, $context: $base-size) {
+    @return ($target / $context) * 1em;
+}
+
+%line-height-default {
+    line-height: 1.15;
+}
+
+%font-family-inter {
+    font-family: "Inter", sans-serif;
+}
+
+%letter-spacing {
+    letter-spacing: -0.02em;
+}
+
+%underline {
+    text-decoration-line: underline;
+}
+
+%uppercase {
+    text-transform: uppercase;
+}
+
+%ellipsis-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+$fontWeight: 400;
+
+@while $fontWeight <= 900 {
+    %font-weight-#{$fontWeight} {
+        font-weight: $fontWeight;
+    }
+
+    $fontWeight: $fontWeight + 100;
+}
+
+$fontSize: 10;
+
+@while $fontSize <= 60 {
+    %font-size-#{$fontSize} {
+        font-size: size($fontSize);
+    }
+
+    $fontSize: $fontSize + 1;
+}
+
+$lineHeight: 100;
+
+@while $lineHeight <= 160 {
+    %line-height-#{$lineHeight} {
+        line-height: $lineHeight * 1%;
+    }
+
+    $lineHeight: $lineHeight + 10;
+}
+
+/** Display **/
+%display-inter-60-900 {
+    @extend %font-family-inter, %font-weight-900, %font-size-60, %line-height-130, %letter-spacing;
+}
+
+/** Paragraph **/
+%paragraph-inter-14 {
+    @extend %font-family-inter, %font-size-14, %line-height-140;
+}
+
+/** Labels **/
+%label-inter-30-900 {
+    @extend %font-family-inter, %font-weight-900, %font-size-30, %line-height-130;
+}
+
+%label-inter-20 {
+    @extend %font-family-inter, %font-size-20, %line-height-120;
+}
+
+%label-inter-16 {
+    @extend %font-family-inter, %font-size-16;
+}
+
+%label-inter-12-700 {
+    @extend %font-family-inter, %font-weight-700, %font-size-12;
+}
+
+%label-inter-14-700 {
+    @extend %font-family-inter, %font-weight-700, %font-size-14;
+}
+
+%label-inter-12 {
+    @extend %font-family-inter, %font-size-12;
+}
