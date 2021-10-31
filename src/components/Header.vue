@@ -2,7 +2,7 @@
   <header>
     <nav class="nav">
       <img class="nav__logo" alt="Logo Dojo" src="../assets/images/logo.png" />
-      <a class="nav__link">Admin</a>
+      <g-link class="nav__link" to="/admin" target="_blank">Admin</g-link>
     </nav>
   </header>
 </template>
@@ -28,6 +28,11 @@ export default {
     @extend %label-inter-16;
     padding: 1rem 1rem 1rem 0;
     transition: color 0.5s;
+    text-decoration: none;
+
+    &:visited {
+      color: color("grey", "600");
+    }
 
     &:hover {
       color: color("primary", "base");
