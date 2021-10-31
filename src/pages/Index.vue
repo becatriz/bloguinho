@@ -82,9 +82,13 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .component-search {
   text-align: center;
+
+  @media #{$small-and-down} {
+    text-align: inherit;
+  }
 }
 
 .component-pill {

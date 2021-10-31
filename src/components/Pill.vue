@@ -28,6 +28,7 @@ export default {
   .text {
     @extend %label-inter-16;
     text-align: center;
+    cursor: pointer;
 
     border: 1px solid color("grey", "600");
     padding: 0.5rem 1.5rem 0.5rem 1.5rem;
