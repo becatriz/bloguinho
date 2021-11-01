@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <g-link class="read-more" :to="this.path">
+  <div class="read-more row">
+    <div class="read-more__author m-8 s-6">Autor(a): {{ this.author }}</div>
+    <g-link class="read-more__label m-4 s-6" :to="this.path">
       {{ this.text }}
-
-      <img
-        class="read-more__image"
-        alt="ler mais"
-        src="../assets/images/arrow.png"
-      />
+      <img alt="ler mais" src="../assets/images/arrow.png" />
     </g-link>
   </div>
 </template>
@@ -17,6 +13,10 @@ export default {
   name: "ReadMore",
   props: {
     path: {
+      type: String,
+      default: ""
+    },
+    author: {
       type: String,
       default: ""
     }
@@ -31,12 +31,19 @@ export default {
 
 <style lang="scss" scoped>
 .read-more {
-  @extend %label-inter-14-700;
-  color: color("primary", "base");
-  text-decoration: none;
+  &__author {
+    @extend %label-inter-12;
+    margin-left: -16px;
+  }
 
-  &__image {
-    margin-bottom: -5px;
+  &__label {
+    @extend %label-inter-14-700;
+    color: color("primary", "base");
+    text-decoration: none;
+
+    img {
+      margin-bottom: -5px;
+    }
   }
 }
 </style>

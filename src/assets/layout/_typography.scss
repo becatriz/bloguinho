@@ -75,6 +75,10 @@ $lineHeight: 100;
     @extend %font-family-inter, %font-weight-900, %font-size-30, %line-height-130;
 }
 
+%label-inter-20-700 {
+    @extend %font-family-inter, %font-weight-700, %font-size-20, %line-height-120;
+}
+
 %label-inter-20 {
     @extend %font-family-inter, %font-size-20, %line-height-120;
 }

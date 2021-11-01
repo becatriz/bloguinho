@@ -9,39 +9,49 @@
     </section>
     <section :class="{ container__larger: mediumScreenAndUp }">
       <div class="post-highlight row">
-        <ul class="m-6 s-12">
-          <li v-for="post in $page.posts.edges.slice(0, 1)" :key="post.id">
-            <img
-              class="post-highlight__image"
-              :src="post.node.featuredImage"
-              alt="post-destaque"
-            />
+        <ul>
+          <li
+            class="m-6 s-12"
+            v-for="post in $page.posts.edges.slice(0, 1)"
+            :key="post.id"
+          >
+            <img :src="post.node.featuredImage" alt="post-destaque" />
+          </li>
+          <li class="m-6 s-12">
+            <span class="post-highlight__label">Front-end </span>
+            <span class="post-highlight__hour">
+              - {{ $page.posts.edges.slice(0, 1)[0].node.date }}</span
+            ><br />
+            <h2 class="post-highlight__title">
+              {{ $page.posts.edges.slice(0, 1)[0].node.title }}
+            </h2>
+            <p class="post-highlight__text">
+              {{ $page.posts.edges.slice(0, 1)[0].node.description }}
+            </p>
           </li>
         </ul>
-        <div class="m-6 s-12">
-          <span class="post-highlight__label">Front-end </span>
-          <span class="post-highlight__hour"> . 1 Hour Ago</span><br />
-          <h2 class="post-highlight__title">
-            Optimizing CSS for faster page loads
-          </h2>
-          <p class="post-highlight__text">
-            Not long ago I decided to improve the loading times of my website.
-            It already loads pretty fast, but I knew there was still room for
-            improvement and one of them was CSS loading. I will walk you through
-            the process and show you how you can improve your load times as
-            well. To see how CSS affects the load time of a webpage we first
-            have to know how the browser converts an HTML document into a
-            functional webpage...
-          </p>
-        </div>
-
         <ReadMore
           class="component-readMore"
+          :author="$page.posts.edges.slice(0, 1)[0].node.author"
           :path="$page.posts.edges.slice(0, 1)[0].node.path"
         />
       </div>
     </section>
-    <Card />
+    <div :class="{ container__larger: mediumScreenAndUp }">
+      <div class="row">
+        <div v-for="post in $page.posts.edges" :key="post.id">
+          <div class="m-4 s-12">
+            <Card
+              :path="post.node.path"
+              :img="post.node.featuredImage"
+              :author="post.node.author"
+              :title="post.node.title"
+              :description="post.node.description"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </Layout>
 </template>
 
@@ -54,6 +64,9 @@ query Posts {
         title
         path
         featuredImage
+        description
+        author
+        date
       }
     }
   }
@@ -74,6 +87,7 @@ export default {
   metaInfo: {
     title: "Blog"
   },
+
   mixins: [mediaQuery],
   components: {
     Hero,
@@ -105,12 +119,15 @@ export default {
 .post-highlight {
   margin-top: 25px;
   border: 1px solid color("grey", "50");
-  &__image {
+
+  img {
+    align-items: center;
+
     width: 30vw;
     height: 30vh;
 
     @media #{$small-and-down} {
-      width: 86vw;
+      width: 70vw;
     }
   }
 

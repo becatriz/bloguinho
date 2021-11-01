@@ -28,7 +28,7 @@ $grid-max: 1004px;
 
 .row:before,
 .row:after {
-    content: " ";
+    content: "";
     display: table;
 }
 
