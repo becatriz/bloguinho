@@ -7,7 +7,7 @@
     <section>
       <Pill class="component-pill" />
     </section>
-    <section :class="{ container__large: mediumScreenAndUp }">
+    <section :class="{ container__larger: mediumScreenAndUp }">
       <div class="post-highlight row">
         <ul class="m-6 s-12">
           <li v-for="post in $page.posts.edges.slice(0, 1)" :key="post.id">
@@ -41,6 +41,7 @@
         />
       </div>
     </section>
+    <Card />
   </Layout>
 </template>
 
@@ -65,6 +66,7 @@ import Hero from "../components/Hero.vue"
 import Search from "../components/Search.vue"
 import Pill from "../components/Pill.vue"
 import ReadMore from "../components/ReadMore.vue"
+import Card from "../components/Card.vue"
 
 import mediaQuery from "../mixin/MediaQuery"
 
@@ -77,7 +79,8 @@ export default {
     Hero,
     Search,
     Pill,
-    ReadMore
+    ReadMore,
+    Card
   }
 }
 </script>
@@ -97,13 +100,6 @@ export default {
 
 .component-readMore {
   text-align: end;
-}
-
-.container {
-  &__large {
-    margin-left: 300px;
-    margin-right: 300px;
-  }
 }
 
 .post-highlight {

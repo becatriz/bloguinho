@@ -40,6 +40,10 @@ export default {
     width: 24px;
     height: 24px;
     cursor: pointer;
+
+    &:active {
+      transform: translateY(2px);
+    }
   }
 }
 </style>

@@ -2,6 +2,7 @@
   <div>
     <Header />
     <slot />
+    <Footer class="footer" />
   </div>
 </template>
 
@@ -15,12 +16,20 @@ query {
 
 <script>
 import Header from "../components/Header.vue"
+import Footer from "../components/Footer.vue"
+
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.footer {
+  margin-top: 100px;
+}
 </style>
+
+
