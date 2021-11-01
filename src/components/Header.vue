@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="nav">
+    <g-link class="nav" to="/">
       <img class="nav__logo" alt="Logo Dojo" src="../assets/images/logo.png" />
       <g-link
         v-if="mediumScreenAndUp"
@@ -14,7 +14,7 @@
       <g-link to="/admin" target="_blank">
         <img class="nav__img" src="../assets/images/github.png" />
       </g-link>
-    </nav>
+    </g-link>
   </header>
 </template>
 
@@ -28,9 +28,16 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
+  text-decoration: none;
+  margin-left: 200px;
+
+  @media #{$small-and-down} {
+    margin: 0;
+  }
 
   &__logo {
     display: block;

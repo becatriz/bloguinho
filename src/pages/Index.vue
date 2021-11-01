@@ -18,7 +18,9 @@
             <img :src="post.node.featuredImage" alt="post-destaque" />
           </li>
           <li class="m-6 s-12">
-            <span class="post-highlight__label">Front-end </span>
+            <span class="post-highlight__label">
+              {{ $page.posts.edges.slice(0, 1)[0].node.excerpt }}
+            </span>
             <span class="post-highlight__hour">
               - {{ $page.posts.edges.slice(0, 1)[0].node.date }}</span
             ><br />
@@ -42,6 +44,7 @@
         <div v-for="post in $page.posts.edges" :key="post.id">
           <div class="m-4 s-12">
             <Card
+              :excerpt="post.node.excerpt"
               :path="post.node.path"
               :img="post.node.featuredImage"
               :author="post.node.author"
@@ -67,6 +70,7 @@ query Posts {
         description
         author
         date
+        excerpt
       }
     }
   }

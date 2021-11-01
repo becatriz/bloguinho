@@ -67,7 +67,11 @@ $lineHeight: 100;
 
 /** Paragraph **/
 %paragraph-inter-14 {
-    @extend %font-family-inter, %font-size-14, %line-height-140;
+    @extend %font-family-inter, %font-size-14, %line-height-160;
+}
+
+%paragraph-inter-40-700 {
+    @extend %font-family-inter, %font-weight-700, %font-size-40, %line-height-140;
 }
 
 /** Labels **/
