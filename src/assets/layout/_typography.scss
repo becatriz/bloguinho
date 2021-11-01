@@ -83,6 +83,10 @@ $lineHeight: 100;
     @extend %font-family-inter, %font-size-16;
 }
 
+%label-inter-16-700 {
+    @extend %font-family-inter, %font-weight-700, %font-size-16;
+}
+
 %label-inter-12-700 {
     @extend %font-family-inter, %font-weight-700, %font-size-12;
 }
