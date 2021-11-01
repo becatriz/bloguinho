@@ -37,14 +37,6 @@ module.exports = {
       }
     },
     {
-      use: '@gridsome/source-filesystem',
-      options: {
-        path: 'tag/**/*.md',
-        typeName: 'Tag',
-        remark: {}
-      }
-    },
-    {
       use: "gridsome-plugin-netlify-cms",
       options: {
         publicPath: "/admin"
