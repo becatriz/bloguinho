@@ -14,16 +14,17 @@ collections:
     fields: # The fields for each document, usually in front matter
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Featured Image", name: "featuredImage", widget: "image" }
-      - {
-          label: "Tags",
-          name: "tags",
-          widget: "select",
-          multiple: true,
-          options: ["Design", "UX", "Dev"],
-          default: ["Design"],
-        }
       - { label: "Excerpt", name: "excerpt", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "tag"
+    label: "Tag"
+    folder: "tag"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tag", name: "tag", widget: "string" }
+      
