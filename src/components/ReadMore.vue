@@ -1,7 +1,7 @@
 <template>
   <div class="read-more row">
-    <div class="read-more__author m-8 s-6">Autor(a): {{ this.author }}</div>
-    <g-link class="read-more__label m-4 s-6" :to="this.path">
+    <div class="read-more__author m-6 s-6">Autor(a): {{ this.author }}</div>
+    <g-link class="read-more__label m-6 s-6" :to="this.path">
       {{ this.text }}
       <img alt="ler mais" src="../assets/images/arrow.png" />
     </g-link>
@@ -37,13 +37,10 @@ export default {
   }
 
   &__label {
+    display: flex;
     @extend %label-inter-14-700;
     color: color("primary", "base");
     text-decoration: none;
-
-    img {
-      margin-bottom: -5px;
-    }
   }
 }
 </style>

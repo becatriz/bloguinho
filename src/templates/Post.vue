@@ -10,6 +10,22 @@
         <div class="post__content" v-html="$page.post.content" />
       </div>
     </div>
+    <div :class="{ container__larger: mediumScreenAndUp }">
+      <div class="row">
+        <div v-for="post in $static.posts.edges" :key="post.id">
+          <div class="m-4 s-12">
+            <Card
+              :excerpt="post.node.excerpt"
+              :path="post.node.path"
+              :img="post.node.featuredImage"
+              :author="post.node.author"
+              :title="post.node.title"
+              :description="post.node.description"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </BlogLayout>
 </template>
 
@@ -25,6 +41,38 @@ query Post ($id: ID!) {
   }
 }
 </page-query>
+
+<static-query>
+query Posts {
+  posts: allPost {
+    edges {
+      node {
+        id
+        title
+        path
+        featuredImage
+        description
+        author
+        date
+        excerpt
+      }
+    }
+  }
+}
+</static-query>
+
+
+<script>
+import Card from "../components/Card.vue"
+import MediaQuery from "../mixin/MediaQuery"
+
+export default {
+  mixins: [MediaQuery],
+  components: {
+    Card
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .post {
