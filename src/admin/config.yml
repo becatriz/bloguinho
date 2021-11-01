@@ -14,6 +14,15 @@ collections:
     fields: # The fields for each document, usually in front matter
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - {
+          label: "Tag",
+          name: "tag",
+          widget: "relation",
+          collection: "tag",
+          search_fields: ["tag"],
+          value_field: "tag",
+          display_fields: ["tag"],
+        }
       - { label: "Excerpt", name: "excerpt", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
@@ -27,4 +36,3 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Tag", name: "tag", widget: "string" }
-      
