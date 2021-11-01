@@ -1,7 +1,9 @@
 <template>
   <header>
-    <g-link class="nav" to="/">
-      <img class="nav__logo" alt="Logo Dojo" src="../assets/images/logo.png" />
+    <nav class="nav">
+      <g-link to="/" class="nav__logo">
+        <img alt="Logo Dojo" src="../assets/images/logo.png" />
+      </g-link>
       <g-link
         v-if="mediumScreenAndUp"
         class="nav__link"
@@ -10,11 +12,10 @@
       >
         Sing in with Github
       </g-link>
-
       <g-link to="/admin" target="_blank">
         <img class="nav__img" src="../assets/images/github.png" />
       </g-link>
-    </g-link>
+    </nav>
   </header>
 </template>
 
