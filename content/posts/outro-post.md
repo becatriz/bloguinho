@@ -1,6 +1,7 @@
 ---
 title: Outro post
 featuredImage: /uploads/colors_css.png
+tag: Tecnologia
 excerpt: Front-end
 description: Lorem Ipsum is simply dummy text of the printing and typesetting
   industry. Lorem Ipsum has been the industry's standard dummy text ever since

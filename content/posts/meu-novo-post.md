@@ -1,6 +1,7 @@
 ---
 title: Meu novo post
 featuredImage: /uploads/large.png
+tag: Javascript
 excerpt: Front-end
 description: Lorem Ipsum is simply dummy text of the printing and typesetting
   industry. Lorem Ipsum has been the industry's standard dummy text ever since
