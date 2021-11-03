@@ -1,7 +1,7 @@
 <template>
   <div class="read-more row">
-    <div class="read-more__author m-6 s-6">Autor(a): {{ this.author }}</div>
-    <g-link class="read-more__label m-6 s-6" :to="this.path">
+    <p class="read-more__author">Autor(a): {{ this.author }}</p>
+    <g-link class="read-more__label" :to="this.path">
       {{ this.text }}
       <img alt="ler mais" src="../assets/images/arrow.png" />
     </g-link>
@@ -31,9 +31,11 @@ export default {
 
 <style lang="scss" scoped>
 .read-more {
+  display: flex;
   &__author {
+    flex: 1;
     @extend %label-inter-12;
-    margin-left: -16px;
+    color: color("grey", "600");
   }
 
   &__label {

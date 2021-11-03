@@ -22,6 +22,10 @@ $grid-max: 1004px;
     }
 }
 
+.grid {
+    margin: 0 -16px;
+}
+
 .row {
     box-sizing: border-box;
 }

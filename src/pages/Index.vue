@@ -16,24 +16,26 @@
 
     <!-- <TagsList :list="getTagsList" /> -->
 
-    <LargeCard />
+    <section
+      class="last-published-post-session"
+      :class="{ container__larger: mediumScreenAndUp }"
+    >
+      <LargeCard :post="lastPublishedPost" />
+    </section>
 
-    <div :class="{ container__larger: mediumScreenAndUp }">
+    <section :class="{ container__larger: mediumScreenAndUp }">
       <div class="row">
-        <div v-for="post in $page.posts.edges" :key="post.id">
-          <div class="m-4 s-12">
-            <Card
-              :excerpt="post.node.excerpt"
-              :path="post.node.path"
-              :img="post.node.featuredImage"
-              :author="post.node.author"
-              :title="post.node.title"
-              :description="post.node.description"
-            />
+        <div class="grid">
+          <div
+            v-for="post in $page.posts.edges"
+            :key="post.id"
+            class="m-4 s-12"
+          >
+            <Card :post="post" />
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </Layout>
 </template>
 
@@ -50,6 +52,7 @@ query Posts {
         author
         date
         excerpt
+        tag
       }
     }
   }
@@ -103,13 +106,17 @@ export default {
 
   /* EBLE */
   mounted() {
-    console.log(this.$page)
+    console.log(this.$page.posts, "page")
   },
 
   /* EBLE - Criar mixin */
   computed: {
     getTagsList() {
       return this.$page.tags.edges.map(({ node }) => node.tag)
+    },
+
+    lastPublishedPost() {
+      return this.$page.posts.edges[0].node
     },
 
     searchResults() {
@@ -146,5 +153,11 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-block: 50px;
+}
+
+.last-published-post-session {
+  padding: 8px;
+  border: 1px solid #e5f4ff;
+  border-radius: 5px;
 }
 </style>

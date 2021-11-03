@@ -2,7 +2,9 @@
   <div class="footer">
     <p>
       <span class="footer__name">dev.blog </span>
-      <span class="footer__copyright">2021 copyright all rights reserved </span>
+      <span class="footer__copyright">
+        - {{ new Date().getFullYear() }} copyright all rights reserved
+      </span>
     </p>
   </div>
 </template>
@@ -19,6 +21,7 @@ export default {
   width: 70%;
   text-align: center;
   margin: 0 auto;
+  padding-block: 29px;
 
   &__name {
     @extend %label-inter-16-700;
@@ -29,5 +32,3 @@ export default {
   }
 }
 </style>
-
-
