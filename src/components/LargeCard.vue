@@ -1,36 +1,32 @@
 <template>
-  <section :class="{ container__larger: mediumScreenAndUp }">
-    <div class="post-highlight row">
-      <ul>
-        <li
-          class="m-6 s-12"
-          v-for="post in $static.posts.edges.slice(0, 1)"
-          :key="post.id"
-        >
-          <img :src="post.node.featuredImage" alt="post-destaque" />
-        </li>
-        <li class="m-6 s-12">
-          <span class="post-highlight__label">
-            {{ $static.posts.edges.slice(0, 1)[0].node.excerpt }}
-          </span>
-          <span class="post-highlight__hour">
-            - {{ $static.posts.edges.slice(0, 1)[0].node.date }}</span
-          ><br />
-          <h2 class="post-highlight__title">
-            {{ $static.posts.edges.slice(0, 1)[0].node.title }}
-          </h2>
-          <p class="post-highlight__text">
-            {{ $static.posts.edges.slice(0, 1)[0].node.description }}
-          </p>
-        </li>
-      </ul>
-      <ReadMore
-        class="component-readMore"
-        :author="$static.posts.edges.slice(0, 1)[0].node.author"
-        :path="$static.posts.edges.slice(0, 1)[0].node.path"
+  <div class="large-card grid">
+    <div class="large-card__image m-5">
+      <img
+        class="large-card__image"
+        :src="post.node.featuredImage"
+        alt="post-destaque"
       />
     </div>
-  </section>
+    <div class="large-card__info m-7">
+      <p class="large-card__label">
+        {{ post.node.tag }} -
+        <span class="large-card__hour">{{
+          getDateFormatted(post.node.date, "pt-BR")
+        }}</span>
+      </p>
+      <h2 class="large-card__title">
+        {{ post.node.title }}
+      </h2>
+      <p class="large-card__text">
+        {{ post.node.description }}
+      </p>
+      <ReadMore
+        class="component-readMore"
+        :author="post.node.author"
+        :path="post.node.path"
+      />
+    </div>
+  </div>
 </template>
 
 <static-query>
@@ -55,37 +51,61 @@ query Posts {
 <script>
 import ReadMore from "../components/ReadMore.vue"
 import mediaQuery from "../mixin/MediaQuery"
+import dateConvert from "../utils/dateConvert"
+
 export default {
   components: {
     ReadMore
   },
 
+  props: {
+    post: {
+      type: Object
+    }
+  },
+
   mixins: [mediaQuery],
 
+  /* EBLE */
   mounted() {
     console.log(this.$static)
+  },
+
+  methods: {
+    getDateFormatted(date, locale) {
+      return dateConvert(date).convertToLocaleString(locale)
+    }
   }
 }
 </script>
 <style scoped lang="scss">
-.post-highlight {
-  margin-top: 25px;
-  border: 1px solid color("grey", "50");
+.large-card {
+  display: flex;
 
-  img {
-    align-items: center;
+  &__info {
+    display: flex;
+    flex-direction: column;
 
-    width: 30vw;
-    height: 30vh;
+    &.m-7 {
+      padding-bottom: 8px;
+      margin-bottom: 0;
+    }
+  }
 
-    @media #{$small-and-down} {
-      width: 70vw;
+  &__image {
+    img {
+      width: 100%;
+    }
+
+    &.m-5 {
+      margin-bottom: 0;
     }
   }
 
   &__label {
     @extend %label-inter-12-700;
     color: color("primary", "base");
+    padding-bottom: 12px;
   }
 
   &__hour {
@@ -101,6 +121,7 @@ export default {
   &__text {
     @extend %paragraph-inter-14;
     color: color("grey", "600");
+    flex: 1;
   }
 }
 </style>

@@ -32,6 +32,7 @@ export default {
 .wrapper {
   background: color("grey", "100");
   height: 567px;
+  margin-bottom: 30px;
 
   @media #{$small-and-down} {
     height: 150px;

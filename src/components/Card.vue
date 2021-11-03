@@ -1,17 +1,22 @@
 <template>
-  <div>
+  <div class="card">
     <div class="card__img">
-      <img alt="post" :src="this.img" width="100%" height="250px" />
+      <img
+        alt="post"
+        :src="post.node.featuredImage"
+        width="100%"
+        height="250px"
+      />
     </div>
-    <p class="card__excerpt">{{ this.excerpt }}</p>
-    <h2 class="card__title">{{ this.title }}</h2>
+    <p class="card__tag">{{ post.node.tag }}</p>
+    <h2 class="card__title">{{ post.node.title }}</h2>
     <p class="card__description">
-      {{ this.description }}
+      {{ post.node.description }}
     </p>
     <ReadMore
       class="component-readMore"
-      :author="this.author"
-      :path="this.path"
+      :author="post.node.author"
+      :path="post.node.path"
     />
   </div>
 </template>
@@ -24,30 +29,13 @@ export default {
   components: {
     ReadMore
   },
+
+  mounted() {
+    console.log(this.post.node.img)
+  },
   props: {
-    img: {
-      type: String,
-      default: ""
-    },
-    title: {
-      type: String,
-      default: ""
-    },
-    description: {
-      type: String,
-      default: ""
-    },
-    author: {
-      type: String,
-      default: ""
-    },
-    path: {
-      type: String,
-      default: ""
-    },
-    excerpt: {
-      type: String,
-      default: ""
+    post: {
+      type: Object
     }
   }
 }
@@ -55,27 +43,29 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  &__excerpt {
-    padding-top: 30px;
+  border: 1px solid #e5f4ff;
+  border-radius: 5px;
+  padding: 10px;
+  &__tag {
     @extend %label-inter-12;
     color: color("primary", "base");
+    padding-bottom: 5px;
   }
 
   &__title {
     color: ("secondary", "900");
     @extend %label-inter-20-700;
+    padding-bottom: 7px;
   }
 
   &__description {
     @extend %paragraph-inter-14;
     color: color("grey", "600");
+    padding-bottom: 22px;
   }
 
   &__img {
-    padding: 0.5rem;
-    margin-top: 30px;
-    border: 1px solid #e5f4ff;
-    border-radius: 5px;
+    padding-bottom: 16px;
   }
 }
 </style>
