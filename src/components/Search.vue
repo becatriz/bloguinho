@@ -1,9 +1,15 @@
 <template>
   <div class="container">
     <div class="row search">
-      <input class="search__input" type="search" placeholder="Buscar..." />
+      <input
+        class="search__input"
+        type="search"
+        placeholder="Buscar..."
+        v-model="search"
+      />
 
       <img
+        @click="$emit('teste', search)"
         class="search__icon s-2"
         alt="busca"
         src="../assets/images/search.png"
@@ -14,7 +20,11 @@
 
 <script>
 export default {
-  name: "Search"
+  name: "Search",
+
+  data: () => ({
+    search: ""
+  })
 }
 </script>
 
