@@ -13,7 +13,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: "teconologia"
+      default: "Label"
     },
     active: {
       type: Boolean,
