@@ -4,6 +4,7 @@
     <section>
       <Search class="component-search" @teste="handleSearch($event)" />
     </section>
+
     <section>
       <div class="container">
         <ul class="tags-list">
@@ -14,16 +15,18 @@
       </div>
     </section>
 
-    <!-- <TagsList :list="getTagsList" /> -->
-
     <section
+      style="margin-bottom: 50px;"
       class="last-published-post-session"
       :class="{ container__larger: mediumScreenAndUp }"
     >
       <LargeCard :post="lastPublishedPost" />
     </section>
 
-    <section :class="{ container__larger: mediumScreenAndUp }">
+    <section
+      style="margin-bottom: 75px;"
+      :class="{ container__larger: mediumScreenAndUp }"
+    >
       <div class="row">
         <div class="grid">
           <div
@@ -33,6 +36,19 @@
           >
             <Card :post="post" />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section :class="{ container__larger: mediumScreenAndUp }">
+      <div class="row">
+        <div class="grid">
+          <div class="m-8">
+            <div style="margin-bottom: 60px;" v-for="post in $page.posts.edges" :key="post.id">
+              <LargeCard :post="post" />
+            </div>
+          </div>
+          <div class="m-4"><TagsList :list="getTagsList" /></div>
         </div>
       </div>
     </section>
@@ -116,7 +132,7 @@ export default {
     },
 
     lastPublishedPost() {
-      return this.$page.posts.edges[0].node
+      return this.$page.posts.edges[0]
     },
 
     searchResults() {

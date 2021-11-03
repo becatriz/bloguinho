@@ -1,6 +1,6 @@
 <template>
   <BlogLayout>
-    <div class="container">
+    <div style="margin-bottom: 100px;" class="container">
       <div class="post">
         <img class="post__img" :src="$page.post.featuredImage" alt="blog" />
         <span class="post__excerpt">{{ $page.post.excerpt }}</span>
@@ -10,18 +10,12 @@
         <div class="post__content" v-html="$page.post.content" />
       </div>
     </div>
+
     <div :class="{ container__larger: mediumScreenAndUp }">
       <div class="row">
         <div v-for="post in $static.posts.edges" :key="post.id">
           <div class="m-4 s-12">
-            <Card
-              :excerpt="post.node.excerpt"
-              :path="post.node.path"
-              :img="post.node.featuredImage"
-              :author="post.node.author"
-              :title="post.node.title"
-              :description="post.node.description"
-            />
+            <Card :post="post" />
           </div>
         </div>
       </div>
@@ -58,18 +52,33 @@ query Posts {
       }
     }
   }
+
+  tags: allTag {
+    edges {
+      node {
+        tag
+      }
+    }
+  }
 }
 </static-query>
-
 
 <script>
 import Card from "../components/Card.vue"
 import MediaQuery from "../mixin/MediaQuery"
+import TagsList from "../components/TagsList.vue"
 
 export default {
   mixins: [MediaQuery],
   components: {
-    Card
+    Card,
+    TagsList
+  },
+
+  computed: {
+    getTagsList() {
+      return this.$static.tags.edges.map(({ node }) => node.tag)
+    }
   }
 }
 </script>

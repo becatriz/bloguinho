@@ -3,27 +3,27 @@
     <div class="large-card__image m-5">
       <img
         class="large-card__image"
-        :src="post.featuredImage"
+        :src="post.node.featuredImage"
         alt="post-destaque"
       />
     </div>
     <div class="large-card__info m-7">
       <p class="large-card__label">
-        {{ post.tag }} -
+        {{ post.node.tag }} -
         <span class="large-card__hour">{{
-          new Date(post.date).toLocaleDateString("pt-BR")
+          new Date(post.node.date).toLocaleDateString("pt-BR")
         }}</span>
       </p>
       <h2 class="large-card__title">
-        {{ post.title }}
+        {{ post.node.title }}
       </h2>
       <p class="large-card__text">
-        {{ post.description }}
+        {{ post.node.description }}
       </p>
       <ReadMore
         class="component-readMore"
-        :author="post.author"
-        :path="post.path"
+        :author="post.node.author"
+        :path="post.node.path"
       />
     </div>
   </div>
