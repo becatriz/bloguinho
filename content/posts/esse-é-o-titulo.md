@@ -1,5 +1,5 @@
 ---
-title: Esse é o titulo
+title: A importância do frontend no desenvolvimento web
 featuredImage: /uploads/css_variables.png
 tag: Front-end
 excerpt: Front-end
