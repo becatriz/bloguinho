@@ -1,5 +1,5 @@
 ---
-title: Meu novo post
+title: "JS e sua relevancia. A linguagem da WEB! "
 featuredImage: /uploads/large.png
 tag: Javascript
 excerpt: Front-end
