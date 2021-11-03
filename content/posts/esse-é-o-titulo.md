@@ -1,7 +1,7 @@
 ---
 title: A importância do frontend no desenvolvimento web
 featuredImage: /uploads/css_variables.png
-tag: Front-end
+tag: CSS
 excerpt: Front-end
 description: Lorem Ipsum is simply dummy text of the printing and typesetting
   industry. Lorem Ipsum has been the industry's standard dummy text ever since
