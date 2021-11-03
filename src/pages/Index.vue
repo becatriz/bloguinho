@@ -2,43 +2,22 @@
   <Layout>
     <Hero />
     <section>
-      <Search class="component-search" />
+      <Search class="component-search" @teste="handleSearch($event)" />
     </section>
     <section>
-      <Pill class="component-pill" />
-    </section>
-    <section :class="{ container__larger: mediumScreenAndUp }">
-      <div class="post-highlight row">
-        <ul>
-          <li
-            class="m-6 s-12"
-            v-for="post in $page.posts.edges.slice(0, 1)"
-            :key="post.id"
-          >
-            <img :src="post.node.featuredImage" alt="post-destaque" />
-          </li>
-          <li class="m-6 s-12">
-            <span class="post-highlight__label">
-              {{ $page.posts.edges.slice(0, 1)[0].node.excerpt }}
-            </span>
-            <span class="post-highlight__hour">
-              - {{ $page.posts.edges.slice(0, 1)[0].node.date }}</span
-            ><br />
-            <h2 class="post-highlight__title">
-              {{ $page.posts.edges.slice(0, 1)[0].node.title }}
-            </h2>
-            <p class="post-highlight__text">
-              {{ $page.posts.edges.slice(0, 1)[0].node.description }}
-            </p>
+      <div class="container">
+        <ul class="tags-list">
+          <li v-for="tag in $page.tags.edges" :key="tag.node.tag">
+            <Pill class="component-pill" :text="tag.node.tag" />
           </li>
         </ul>
-        <ReadMore
-          class="component-readMore"
-          :author="$page.posts.edges.slice(0, 1)[0].node.author"
-          :path="$page.posts.edges.slice(0, 1)[0].node.path"
-        />
       </div>
     </section>
+
+    <!-- <TagsList :list="getTagsList" /> -->
+
+    <LargeCard />
+
     <div :class="{ container__larger: mediumScreenAndUp }">
       <div class="row">
         <div v-for="post in $page.posts.edges" :key="post.id">
@@ -74,6 +53,13 @@ query Posts {
       }
     }
   }
+  tags: allTag {
+    edges {
+      node {
+        tag
+      }
+    }
+  }
 
 }
 </page-query>
@@ -84,6 +70,8 @@ import Search from "../components/Search.vue"
 import Pill from "../components/Pill.vue"
 import ReadMore from "../components/ReadMore.vue"
 import Card from "../components/Card.vue"
+import TagsList from "../components/TagsList.vue"
+import LargeCard from "../components/LargeCard.vue"
 
 import mediaQuery from "../mixin/MediaQuery"
 
@@ -92,18 +80,56 @@ export default {
     title: "Blog"
   },
 
+  data: () => ({
+    search: ""
+  }),
+
+  watch: {
+    search(value) {
+      console.log("mudou", value)
+    }
+  },
+
   mixins: [mediaQuery],
   components: {
     Hero,
     Search,
     Pill,
     ReadMore,
-    Card
+    Card,
+    TagsList,
+    LargeCard
+  },
+
+  /* EBLE */
+  mounted() {
+    console.log(this.$page)
+  },
+
+  /* EBLE - Criar mixin */
+  computed: {
+    getTagsList() {
+      return this.$page.tags.edges.map(({ node }) => node.tag)
+    },
+
+    searchResults() {
+      return this.$page.posts.edges.filter(post => {
+        return post.node.title
+          .toLowerCase()
+          .includes(this.search.toLowerCase().trim())
+      })
+    }
+  },
+
+  methods: {
+    handleSearch(event) {
+      this.search = event
+    }
   }
 }
 </script>
 
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
 .component-search {
   text-align: center;
 
@@ -112,47 +138,13 @@ export default {
   }
 }
 
-.component-pill {
-  margin-top: 40px;
-}
-
 .component-readMore {
   text-align: end;
 }
 
-.post-highlight {
-  margin-top: 25px;
-  border: 1px solid color("grey", "50");
-
-  img {
-    align-items: center;
-
-    width: 30vw;
-    height: 30vh;
-
-    @media #{$small-and-down} {
-      width: 70vw;
-    }
-  }
-
-  &__label {
-    @extend %label-inter-12-700;
-    color: color("primary", "base");
-  }
-
-  &__hour {
-    @extend %label-inter-12;
-    color: color("grey", "600");
-  }
-
-  &__title {
-    @extend %label-inter-30-900;
-    height: 55px;
-  }
-
-  &__text {
-    @extend %paragraph-inter-14;
-    color: color("grey", "600");
-  }
+.tags-list {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 50px;
 }
 </style>
