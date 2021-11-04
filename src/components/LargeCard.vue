@@ -1,13 +1,9 @@
 <template>
-  <div class="large-card grid">
-    <div class="large-card__image m-5">
-      <img
-        class="large-card__image"
-        :src="post.node.featuredImage"
-        alt="post-destaque"
-      />
+  <div class="row">
+    <div class="large-card__image m-5 s-12">
+      <img class="" :src="post.node.featuredImage" alt="post-destaque" />
     </div>
-    <div class="large-card__info m-7">
+    <div class="">
       <p class="large-card__label">
         {{ post.node.tag }} -
         <span class="large-card__hour">{{
@@ -116,6 +112,10 @@ export default {
   &__title {
     @extend %label-inter-30-900;
     height: 55px;
+
+    @media #{$small-and-down} {
+      margin-bottom: 50px;
+    }
   }
 
   &__text {

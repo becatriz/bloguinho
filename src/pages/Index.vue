@@ -9,14 +9,14 @@
       <div class="container">
         <ul class="tags-list">
           <li v-for="tag in $page.tags.edges" :key="tag.node.tag">
-            <Pill class="component-pill" :text="tag.node.tag" />
+            <Pill class="component-pill s-12" :text="tag.node.tag" />
           </li>
         </ul>
       </div>
     </section>
 
     <section
-      style="margin-bottom: 50px;"
+      style="margin-bottom: 50px"
       class="last-published-post-session"
       :class="{ container__larger: mediumScreenAndUp }"
     >
@@ -24,11 +24,11 @@
     </section>
 
     <section
-      style="margin-bottom: 75px;"
+      style="margin-bottom: 75px"
       :class="{ container__larger: mediumScreenAndUp }"
     >
       <div class="row">
-        <div class="grid">
+        <div :class="{ grid: mediumScreenAndUp }">
           <div
             v-for="post in $page.posts.edges"
             :key="post.id"
@@ -42,13 +42,17 @@
 
     <section :class="{ container__larger: mediumScreenAndUp }">
       <div class="row">
-        <div class="grid">
-          <div class="m-8">
-            <div style="margin-bottom: 60px;" v-for="post in $page.posts.edges" :key="post.id">
+        <div :class="{ grid: mediumScreenAndUp }">
+          <div class="m-8 s-12">
+            <div
+              style="margin-bottom: 60px"
+              v-for="post in $page.posts.edges"
+              :key="post.id"
+            >
               <LargeCard :post="post" />
             </div>
           </div>
-          <div class="m-4"><TagsList :list="getTagsList" /></div>
+          <div class="m-4 s-12"><TagsList :list="getTagsList" /></div>
         </div>
       </div>
     </section>
@@ -169,6 +173,11 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-block: 50px;
+
+  @media #{$small-and-down} {
+    display: block;
+    padding: 0;
+  }
 }
 
 .last-published-post-session {
