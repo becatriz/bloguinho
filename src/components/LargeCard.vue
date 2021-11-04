@@ -48,6 +48,7 @@ query Posts {
 import ReadMore from "../components/ReadMore.vue"
 import mediaQuery from "../mixin/MediaQuery"
 import dateConvert from "../utils/dateConvert"
+import getDateFormatted from "../mixins/getDateFormatted.mixin"
 
 export default {
   components: {
@@ -60,18 +61,7 @@ export default {
     }
   },
 
-  mixins: [mediaQuery],
-
-  /* EBLE */
-  mounted() {
-    console.log(this.$static)
-  },
-
-  methods: {
-    getDateFormatted(date, locale) {
-      return dateConvert(date).convertToLocaleString(locale)
-    }
-  }
+  mixins: [mediaQuery, getDateFormatted]
 }
 </script>
 <style scoped lang="scss">

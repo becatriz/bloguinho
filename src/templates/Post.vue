@@ -10,8 +10,13 @@
             <img class="post__img" :src="$page.post.featuredImage" alt="blog" />
             <span class="post__tag">{{ $page.post.tag }}</span>
             <h1 class="post__title">{{ $page.post.title }}</h1>
-            <span class="post__author">{{ $page.post.author }} </span>
-            <span class="post__date">{{ $page.post.date }} </span>
+            <p class="post__author">
+              {{ $page.post.author }} -
+              <span class="post__date"
+                >{{ getDateFormatted($page.post.date, "pt-BR") }}
+              </span>
+            </p>
+
             <div class="post__content" v-html="$page.post.content" />
           </div>
           <div class="m-3 s-12"><TagsList :list="getTagsList" /></div>
@@ -81,9 +86,10 @@ query Posts {
 import Card from "../components/Card.vue"
 import MediaQuery from "../mixin/MediaQuery"
 import TagsList from "../components/TagsList.vue"
+import getDateFormatted from "../mixins/getDateFormatted.mixin"
 
 export default {
-  mixins: [MediaQuery],
+  mixins: [MediaQuery, getDateFormatted],
   components: {
     Card,
     TagsList
