@@ -1,12 +1,12 @@
 <template>
   <BlogLayout>
     <section
-      style="margin-top: 56px;"
+      style="margin-top: 56px"
       :class="{ container__larger: mediumScreenAndUp }"
     >
       <div class="row">
-        <div class="grid">
-          <div class=" post m-9">
+        <div :class="{ grid: mediumScreenAndUp }">
+          <div class="post m-9 s-12">
             <img class="post__img" :src="$page.post.featuredImage" alt="blog" />
             <span class="post__tag">{{ $page.post.tag }}</span>
             <h1 class="post__title">{{ $page.post.title }}</h1>
@@ -19,17 +19,17 @@
 
             <div class="post__content" v-html="$page.post.content" />
           </div>
-          <div class="m-3"><TagsList :list="getTagsList" /></div>
+          <div class="m-3 s-12"><TagsList :list="getTagsList" /></div>
         </div>
       </div>
     </section>
 
     <div
-      style="margin-bottom: 50px;"
+      style="margin-bottom: 50px"
       :class="{ container__larger: mediumScreenAndUp }"
     >
       <div class="row">
-        <div class="grid">
+        <div :class="{ container__larger: mediumScreenAndUp }">
           <div v-for="post in $static.posts.edges" :key="post.id">
             <div class="m-4 s-12">
               <Card :post="post" />

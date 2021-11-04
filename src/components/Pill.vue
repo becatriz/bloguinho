@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="wrapper">
-      <span class="text">{{ `#${this.text}` }}</span>
+      <span class="text s-8">{{ `#${this.text}` }}</span>
     </div>
   </div>
 </template>
@@ -25,6 +25,9 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  display: flex;
+  margin: 0 0 10px 50px;
+
   .text {
     @extend %label-inter-16;
     text-align: center;
@@ -36,7 +39,7 @@ export default {
 
     word-break: break-all;
 
-    &active {
+    &.active {
       border: 1px solid color("primary", "base");
     }
   }
