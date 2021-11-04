@@ -30,9 +30,6 @@ export default {
     ReadMore
   },
 
-  mounted() {
-    console.log(this.post.node.img)
-  },
   props: {
     post: {
       type: Object

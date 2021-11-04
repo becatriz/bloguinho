@@ -44,7 +44,11 @@
       <div class="row">
         <div class="grid">
           <div class="m-8">
-            <div style="margin-bottom: 60px;" v-for="post in $page.posts.edges" :key="post.id">
+            <div
+              style="margin-bottom: 60px;"
+              v-for="post in $page.posts.edges"
+              :key="post.id"
+            >
               <LargeCard :post="post" />
             </div>
           </div>
@@ -103,12 +107,6 @@ export default {
     search: ""
   }),
 
-  watch: {
-    search(value) {
-      console.log("mudou", value)
-    }
-  },
-
   mixins: [mediaQuery],
   components: {
     Hero,
@@ -120,12 +118,6 @@ export default {
     LargeCard
   },
 
-  /* EBLE */
-  mounted() {
-    console.log(this.$page.posts, "page")
-  },
-
-  /* EBLE - Criar mixin */
   computed: {
     getTagsList() {
       return this.$page.tags.edges.map(({ node }) => node.tag)
