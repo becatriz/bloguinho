@@ -86,7 +86,7 @@ query Posts {
 import Card from "../components/Card.vue"
 import MediaQuery from "../mixin/MediaQuery"
 import TagsList from "../components/TagsList.vue"
-import getDateFormatted from "../mixins/getDateFormatted.mixin"
+import getDateFormatted from "../mixin/getDateFormatted.mixin"
 
 export default {
   mixins: [MediaQuery, getDateFormatted],

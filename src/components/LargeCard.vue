@@ -48,7 +48,7 @@ query Posts {
 import ReadMore from "../components/ReadMore.vue"
 import mediaQuery from "../mixin/MediaQuery"
 import dateConvert from "../utils/dateConvert"
-import getDateFormatted from "../mixins/getDateFormatted.mixin"
+import getDateFormatted from "../mixin/getDateFormatted.mixin"
 
 export default {
   components: {
