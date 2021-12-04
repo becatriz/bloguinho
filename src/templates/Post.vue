@@ -29,7 +29,7 @@
       :class="{ container__larger: mediumScreenAndUp }"
     >
       <div class="row">
-        <div :class="{ container__larger: mediumScreenAndUp }">
+        <div >
           <div v-for="post in $static.posts.edges" :key="post.id">
             <div class="m-4 s-12">
               <Card :post="post" />
